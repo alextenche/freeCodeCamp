@@ -1,14 +1,19 @@
 function pairwise(arr, arg){
   var result = arr.reduce(function(accumulator, currentValue, currentIndex, initialArray) {
-      for (var i = currentIndex; i < initialArray.length; i += 1) {
-        if ((currentValue + initialArray[i]) == 7) {
-          accumulator += i + currentIndex;
-          initialArray[initialArray.indexOf(currentIndex)] = 0;
-          initialArray[initialArray.indexOf(i)] = 0;
-        }
+    for (var i = currentIndex + 1; i < initialArray.length; i += 1) {
+      if(currentValue === undefined) {
+        break;
+      }
+      if (((currentValue + initialArray[i]) == arg) ) {
+        accumulator += currentIndex + i;
+        initialArray[currentIndex] = undefined;
+        initialArray[i] = undefined;
+        break;
+      }
     }
     return accumulator;
   }, 0);
+  return result;
 }
 
-pairwise([1,4,2,3,0,5], 7);
+pairwise([1, 1, 1], 2);
